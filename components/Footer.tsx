@@ -10,8 +10,8 @@ export default function Footer() {
     <footer className="bg-primary p-2">
       <div className="max-w-5xl mx-auto">
         <img
-          src="/img/logo_text.webp"
-          className="w-1/2 max-w-xs"
+          src="/img/logo-text.svg"
+          className="w-1/2 max-w-xs p-3"
           alt={"暗記メーカー"}
         />
         <ul>

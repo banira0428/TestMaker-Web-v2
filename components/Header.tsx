@@ -16,8 +16,8 @@ export default function Header() {
           <Link href="/">
             <a>
               <img
-                src="/img/logo_text.webp"
-                className="h-12"
+                src="/img/logo-text.svg"
+                className="h-12 p-1"
                 alt={"暗記メーカー"}
               />
             </a>
