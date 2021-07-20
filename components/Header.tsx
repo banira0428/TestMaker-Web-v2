@@ -16,7 +16,7 @@ export default function Header() {
           <Link href="/">
             <a>
               <img
-                src="/img/logo-text.svg"
+                src="/img/logo.svg"
                 className="h-12 p-1"
                 alt={"暗記メーカー"}
               />
