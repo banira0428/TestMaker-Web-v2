@@ -20,7 +20,7 @@ export const createDynamicLinks = async (documentId: string) => {
   const response = await client.post(
     `/v1/shortLinks?key=${process.env.NEXT_PUBLIC_FIREBASE_API_KEY}`,
     {
-      longDynamicLink: `https://testmaker.page.link?link=https://testmaker-1cb29.com/${documentId}&apn=${apn}&amv=${amv}&ibi=${ibi}&isi=${isi}&imv=${imv}`,
+      longDynamicLink: `https://testmaker.page.link?link=https://ankimaker.com/${documentId}&apn=${apn}&amv=${amv}&ibi=${ibi}&isi=${isi}&imv=${imv}`,
     }
   );
   return response.data.shortLink;
