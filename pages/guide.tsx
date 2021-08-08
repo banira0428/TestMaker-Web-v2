@@ -87,12 +87,12 @@ export default function Guide() {
             >
               <div>
                 <p>
-                  まず初めに、お手持ちの端末にファイルが正しく転送されているか（他のアプリで該当のファイルが問題なく開けるかどうか）を確認してください。ファイルが正しく転送されているにも関わらず問題集が読み込めていない場合は、以下のテンプレートファイルと比較し、書式に間違いがないかをご確認ください。
-                </p>
-                <p className="mt-3 text-primary">
-                  <a href="/TestMaker_template.csv" download>
-                    TestMaker_template.csv
-                  </a>
+                  まず初めに、お手持ちの端末にファイルが正しく転送されているか（他のアプリで該当のファイルが問題なく開けるかどうか）を確認してください。ファイルが正しく転送されているにも関わらず問題集が読み込めていない場合は、<Link href="/howto/edit_csv">
+                    <a className="text-primary">
+                      こちら
+                    </a>
+                  </Link>
+                  のページを確認し、書式に間違いがないかをご確認ください。
                 </p>
               </div>
             </Accordion>

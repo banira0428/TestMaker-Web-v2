@@ -38,7 +38,7 @@ export default function EditCSV() {
           <img src="/img/edit_csv5-2.jpg"/>
 
           <h3 className="text-3xl md:text-3xl font-bold mr-auto ml-0 mt-6">6. ファイルの移動</h3>
-          <p className="mt-6">作成したCSVファイルを何かしらの手段でスマートフォンに移動させてください（例：Googleドライブ、Dropbox）</p>
+          <p className="mt-6">作成したCSVファイルを何かしらの手段でスマートフォンに移動させてください（推奨： Android → Google ドライブ、 iOS → iCloud Drive）</p>
           
 
           <h3 className="text-3xl md:text-3xl font-bold mr-auto ml-0 mt-6">7. 「暗記メーカー」へのインポート</h3>
