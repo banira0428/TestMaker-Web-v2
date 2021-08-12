@@ -27,6 +27,7 @@ export default class MyDocument extends Document {
           <meta name="twitter:card" content="summary"/>
           <meta property="og:image" content="https://ankimaker.com/img/logo-testmaker.png"/>
           <meta property="og:description" content="暗記メーカーは「自学自習の効率化」を目的とした問題集作成アプリです"/>
+          <script data-ad-client="ca-pub-8942090726462263" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         </Head>
         <body>
         <Main/>
