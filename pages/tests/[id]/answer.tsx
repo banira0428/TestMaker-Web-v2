@@ -6,6 +6,10 @@ import { Test } from "../../../lib/resources/test";
 import React, { useEffect, useState } from "react";
 import Heading from "../../../components/Heading";
 import { Question } from "../../../lib/resources/question";
+import Prompt from "../../../components/answer/Prompt";
+import FormAnswerWrite from "../../../components/answer/FormAnswerWrite";
+import IsCorrectResult from "../../../components/answer/IsCorrectResult";
+import AllResult from "../../../components/answer/AllResult";
 
 type PathParams = {
   id: string;
@@ -50,72 +54,56 @@ export default function AnswerTest(props) {
         <title>暗記メーカー | 問題集の解答</title>
       </Head>
       <Layout>
-        {test && (
+        {test && questions[index] && (
           <div className="mx-auto max-w-5xl p-3">
             <Heading
               title={"Answer"}
               subTitle={"問題集の解答 / " + test.name}
             />
-            {questions[index] && <p>{questions[index].question}</p>}
             {state === "answer" && (
               <div>
-                <div>
-                  <input
-                    onChange={(e) => setYourAnswer(e.target.value)}
-                  ></input>
-                </div>
-                <div>
-                  <button
-                    onClick={() => {
-                      setState("result");
-                      const isCorrect = yourAnswer === questions[index].answer
-                      setIsCorrect(isCorrect);
-                      if(isCorrect){
-                        setCorrectNum(correctNum + 1);
-                      }
-
-                    }}
-                  >
-                    OK
-                  </button>
-                </div>
+                <Prompt question={questions[index]} index={index} />
+                <FormAnswerWrite
+                  question={questions[index]}
+                  onAnswered={(input: string, isCorrect: boolean) => {
+                    setYourAnswer(input);
+                    setState("result");
+                    setIsCorrect(isCorrect);
+                    if (isCorrect) {
+                      setCorrectNum(correctNum + 1);
+                    }
+                  }}
+                />
               </div>
             )}
             {state === "result" && (
               <div>
-                <div>
-                  <p>{isCorrect ? "正解" : "不正解"}</p>
-                </div>
-                <div>
-                  <button
-                    onClick={() => {
-                      if(index + 1 < questions.length ){
-                        setState("answer");
-                        setIndex(index + 1);
-                      }else{
-                        setState("all_result")
-                      }
-                    }}
-                  >
-                    次の問題へ進む
-                  </button>
-                </div>
+                <Prompt question={questions[index]} index={index} />
+                <IsCorrectResult
+                  question={questions[index]}
+                  yourAnswer={yourAnswer}
+                  isCorrect={isCorrect}
+                  onClickNext={() => {
+                    if (index + 1 < questions.length) {
+                      setState("answer");
+                      setIndex(index + 1);
+                    } else {
+                      setState("all_result");
+                    }
+                  }}
+                />
               </div>
             )}
             {state === "all_result" && (
-              <div>
-                <p>正解率 {correctNum}/{questions.length}</p>
-                <button
-                    onClick={() => {
-                      setIndex(0);
-                      setCorrectNum(0)
-                      setState("answer");
-                    }}
-                  >
-                    もう一度解く
-                  </button>
-
-              </div>
+              <AllResult
+                correctNum={correctNum}
+                size={questions.length}
+                onClickRetry={() => {
+                  setIndex(0);
+                  setCorrectNum(0);
+                  setState("answer");
+                }}
+              />
             )}
           </div>
         )}
