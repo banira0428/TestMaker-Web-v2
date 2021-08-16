@@ -13,7 +13,8 @@ import AllResult from "../../../components/answer/AllResult";
 import { QuestionType, QUESTION_TYPES } from "../../../lib/question_type";
 import FormAnswerSelect from "../../../components/answer/FormAnswerSelect";
 import FormAnswerMultiple from "../../../components/answer/FormAnswerMultiple";
-
+import FormAnswerMultipleSelect from '../../../components/answer/FormAnswerMultipleSelect';
+import { shuffle } from "../../../lib/array_util";
 
 type PathParams = {
   id: string;
@@ -105,6 +106,26 @@ export default function AnswerTest(props) {
                   ) && (
                   <FormAnswerMultiple
                     question={questions[index]}
+                    onAnswered={(input: string, isCorrect: boolean) => {
+                      setYourAnswer(input);
+                      setState("result");
+                      setIsCorrect(isCorrect);
+                      if (isCorrect) {
+                        setCorrectNum(correctNum + 1);
+                      }
+                    }}
+                  />
+                )}
+                {questions[index].type ===
+                  Object.values<QuestionType>(QUESTION_TYPES).indexOf(
+                    QUESTION_TYPES.MULTIPLE_SELECT
+                  ) && (
+                  <FormAnswerMultipleSelect
+                    question={questions[index]}
+                    selections={shuffle([
+                      ...questions[index].others,
+                      ...questions[index].answers,
+                    ])}
                     onAnswered={(input: string, isCorrect: boolean) => {
                       setYourAnswer(input);
                       setState("result");
