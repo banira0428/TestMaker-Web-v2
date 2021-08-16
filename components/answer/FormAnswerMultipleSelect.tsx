@@ -18,12 +18,11 @@ export default function FormAnswerMultipleSelect(props: Props) {
           <SelectCheckbox
             text={selection}
             onChecked={(isChecked: boolean) => {
-              if(isChecked){
-                setInputs([...inputs, selection])
-              }else{
-                setInputs(inputs.filter((it) => it !== selection))
+              if (isChecked) {
+                setInputs([...inputs, selection]);
+              } else {
+                setInputs(inputs.filter((it) => it !== selection));
               }
-              ;
             }}
           />
         </div>
@@ -31,10 +30,13 @@ export default function FormAnswerMultipleSelect(props: Props) {
       <button
         className="block text-white bg-accent p-3 rounded-md w-full mt-5"
         onClick={() => {
-          const answers = props.question.answers.sort();
+          const answers = props.question.checkOrder
+            ? props.question.answers
+            : props.question.answers.sort();
+          const new_inputs = props.question.checkOrder ? inputs : inputs.sort();
           props.onAnswered(
             inputs.join(", "),
-            inputs.sort().every((value, index) => answers[index] === value)
+            new_inputs.every((value, index) => answers[index] === value)
           );
         }}
       >

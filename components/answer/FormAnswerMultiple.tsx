@@ -31,8 +31,14 @@ export default function FormAnswerMultiple(props: Props) {
       <button
         className="block text-white bg-accent p-3 rounded-md w-full mt-5"
         onClick={() => {
-          const answers = props.question.answers.sort();
-          props.onAnswered(inputs.join(", "), inputs.sort().every((value, index) => answers[index] === value));
+          const answers = props.question.checkOrder
+            ? props.question.answers
+            : props.question.answers.sort();
+          const new_inputs = props.question.checkOrder ? inputs : inputs.sort();
+          props.onAnswered(
+            inputs.join(", "),
+            new_inputs.every((value, index) => answers[index] === value)
+          );
         }}
       >
         OK
