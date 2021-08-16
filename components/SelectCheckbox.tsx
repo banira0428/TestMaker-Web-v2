@@ -11,7 +11,7 @@ export default function SelectCheckbox(props: Props) {
   return (
     <label
       className={`block text-white ${
-        checked ? "bg-accent" : "bg-primary"
+        checked ? "bg-blue-700" : "bg-primary"
       } p-3 rounded-md w-full mt-5 cursor-pointer`}
     >
       <input
