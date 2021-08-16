@@ -12,6 +12,8 @@ import IsCorrectResult from "../../../components/answer/IsCorrectResult";
 import AllResult from "../../../components/answer/AllResult";
 import { QuestionType, QUESTION_TYPES } from "../../../lib/question_type";
 import FormAnswerSelect from "../../../components/answer/FormAnswerSelect";
+import FormAnswerMultiple from "../../../components/answer/FormAnswerMultiple";
+
 
 type PathParams = {
   id: string;
@@ -86,6 +88,22 @@ export default function AnswerTest(props) {
                     QUESTION_TYPES.SELECT
                   ) && (
                   <FormAnswerSelect
+                    question={questions[index]}
+                    onAnswered={(input: string, isCorrect: boolean) => {
+                      setYourAnswer(input);
+                      setState("result");
+                      setIsCorrect(isCorrect);
+                      if (isCorrect) {
+                        setCorrectNum(correctNum + 1);
+                      }
+                    }}
+                  />
+                )}
+                {questions[index].type ===
+                  Object.values<QuestionType>(QUESTION_TYPES).indexOf(
+                    QUESTION_TYPES.MULTIPLE
+                  ) && (
+                  <FormAnswerMultiple
                     question={questions[index]}
                     onAnswered={(input: string, isCorrect: boolean) => {
                       setYourAnswer(input);
