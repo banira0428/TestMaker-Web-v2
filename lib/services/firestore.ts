@@ -86,7 +86,7 @@ export const deleteTest = async (documentId: string) => {
 
 export const getTest = async (documentId: string) => {
   const db = firebase.firestore();
-  const document = (await db.collection("tests").doc(documentId).get()).data();
+  const document = (await db.collection("tests").doc(documentId).get()).data() as Test;
   return document;
 };
 
