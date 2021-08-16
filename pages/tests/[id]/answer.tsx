@@ -65,9 +65,13 @@ export default function AnswerTest(props) {
               title={"Answer"}
               subTitle={"問題集の解答 / " + test.name}
             />
+            {
+              (state === "answer" || state === "result")&& (
+                <Prompt question={questions[index]} index={index} />
+              )
+            }
             {state === "answer" && (
               <div>
-                <Prompt question={questions[index]} index={index} />
                 {questions[index].type ===
                   Object.values<QuestionType>(QUESTION_TYPES).indexOf(
                     QUESTION_TYPES.WRITE
@@ -140,7 +144,6 @@ export default function AnswerTest(props) {
             )}
             {state === "result" && (
               <div>
-                <Prompt question={questions[index]} index={index} />
                 <IsCorrectResult
                   question={questions[index]}
                   yourAnswer={yourAnswer}
