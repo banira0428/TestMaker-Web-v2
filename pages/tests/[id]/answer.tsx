@@ -46,7 +46,7 @@ export default function AnswerTest(props) {
 
     fetchQuestions(props.id, 100)
       .then((questions) => {
-        setQuestions(questions.questions);
+        setQuestions(shuffle(questions.questions));
       })
       .catch((err) => {
         console.log(err);
