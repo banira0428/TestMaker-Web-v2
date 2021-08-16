@@ -3,7 +3,7 @@ import { Question } from "../../lib/resources/question";
 
 type Props = {
   question: Question;
-  onAnswered: (isCorrect: boolean) => void;
+  onAnswered: (yourAnswer: string, isCorrect: boolean) => void;
 };
 
 export default function FormAnswerWrite(props: Props) {
@@ -19,7 +19,7 @@ export default function FormAnswerWrite(props: Props) {
       ></input>
       <button
         className="block text-white bg-accent p-3 rounded-md w-full mt-5"
-        onClick={() => props.onAnswered(input === props.question.answer)}
+        onClick={() => props.onAnswered(input, input === props.question.answer)}
       >
         OK
       </button>
