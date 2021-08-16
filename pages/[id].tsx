@@ -3,17 +3,37 @@ import Head from "next/dist/next-server/lib/head";
 import QrCodeDialog from "../components/QrCodeDialog";
 import { createDynamicLinks } from "../lib/services/dynamicLinks";
 import { GetServerSideProps } from "next";
-import { getTest } from '../lib/services/firestore';
+import { getTest } from "../lib/services/firestore";
+import { useEffect, useState } from "react";
 
 type PathParams = {
   id: string;
-}
+};
 
 type Props = {
-  url: string;
-}
+  id: string;
+};
 
 export default function DynamicLinks<Props>(props) {
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    getLink(props.id).then((url) => {
+      if (url) {
+        setUrl(url);
+      }
+    });
+  }, []);
+
+  const getLink = async (id) => {
+    const test = await getTest(props.id);
+    if (!test) {
+      window.location.href = "/";
+    }
+
+    const url = await createDynamicLinks(id);
+    return url;
+  };
 
   return (
     <div>
@@ -22,32 +42,21 @@ export default function DynamicLinks<Props>(props) {
       </Head>
       <Layout>
         <div className="mx-auto max-w-5xl p-3">
-          <QrCodeDialog
-            isShow={true}
-            setIsShow={() => {}}
-            url={props.url}
-          />
+          {url && <QrCodeDialog isShow={true} setIsShow={() => {}} url={url} />}
         </div>
       </Layout>
     </div>
-  )
+  );
 }
 
-export const getServerSideProps: GetServerSideProps<Props> = async context => {
-  const { id } = context.params as PathParams
-
-  const test = await getTest(id);
-  if(!test){
-    return {
-      notFound: true
-    };
-  }
-
-  const url = await createDynamicLinks(id)
+export const getServerSideProps: GetServerSideProps<Props> = async (
+  context
+) => {
+  const { id } = context.params as PathParams;
 
   const props: Props = {
-    url: url,
-  }
+    id: id,
+  };
 
-  return { props }
-}
+  return { props };
+};
