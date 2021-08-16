@@ -114,11 +114,11 @@ export default function EditQuestionDialog(props: Props) {
         return (
           <div
             className={`z-20 w-full h-full fixed bg-gray-700 p-3 top-0 left-0 fade-${status}`}
-            onClick={() => props.setIsShow(false)}
+            onPointerDown={() => props.setIsShow(false)}
           >
             <div
               className="bg-white w-3/6 h-5/6 mx-auto mt-12 mb-12 p-3 rounded-md overflow-y-scroll"
-              onClick={(e) => {
+              onPointerDown={(e) => {
                 e.stopPropagation();
               }}
             >
