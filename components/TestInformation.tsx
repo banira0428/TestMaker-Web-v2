@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { createDynamicLinks } from "../lib/services/dynamicLinks";
 import Button from "./Button";
 import { SelectedTestContext } from "./contexts/TestContext";
@@ -7,6 +7,7 @@ import QrCodeDialog from "../components/QrCodeDialog";
 import { deleteTest } from "../lib/services/firestore";
 import { ToastContext } from "./contexts/ToastContext";
 import { TestsContext } from "./contexts/TestsContext";
+import Link from "next/link";
 
 export default function TestInformation() {
   const { selectedTest, setSelectedTest } = useContext(SelectedTestContext);
@@ -15,9 +16,8 @@ export default function TestInformation() {
 
   const [isShowQrCodeDialog, setIsShowQrCodeDialog] = useState<boolean>(false);
   const [url, setUrl] = useState<string>("");
-  const [isLoadingCreateLink, setIsLoadingCreateLink] = useState<boolean>(
-    false
-  );
+  const [isLoadingCreateLink, setIsLoadingCreateLink] =
+    useState<boolean>(false);
 
   return (
     <div>
@@ -32,8 +32,19 @@ export default function TestInformation() {
               selectedTest.public ? "全体公開" : "限定公開"
             }`}</p>
             <div className="flex gap-4">
+              <Link href={`/tests/${selectedTest.documentId}/answer`}>
+                <a>
+                  <Button
+                    title={"ブラウザで解答する（β版）"}
+                    onClick={() => {}}
+                    className="mt-5"
+                    theme={"primary"}
+                    isLoading={isLoadingCreateLink}
+                  />
+                </a>
+              </Link>
               <Button
-                title={"アプリで解答"}
+                title={"アプリで解答する"}
                 onClick={() => {
                   setIsLoadingCreateLink(true);
                   createDynamicLinks(selectedTest.documentId).then((link) => {
