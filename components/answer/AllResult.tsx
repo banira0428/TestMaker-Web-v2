@@ -1,3 +1,5 @@
+import Link from "next/link";
+import React from "react";
 import { Doughnut } from "react-chartjs-2";
 
 type Props = {
@@ -18,7 +20,7 @@ export default function AllResult(props: Props) {
               {
                 label: "",
                 data: [props.correctNum, props.size - props.correctNum],
-                backgroundColor: ['rgb(255, 159, 64)', 'rgb(54, 162, 235)'],
+                backgroundColor: ["rgb(255, 159, 64)", "rgb(54, 162, 235)"],
               },
             ],
           }}
@@ -27,6 +29,14 @@ export default function AllResult(props: Props) {
           正解率：{props.correctNum}/{props.size}
         </p>
       </div>
+      <Link href="/dashboard">
+        <a>
+          <button className="block text-white bg-primary p-3 rounded-md w-full mt-5">
+            ホームに戻る
+          </button>
+        </a>
+      </Link>
+
       <button
         className="block text-white bg-accent p-3 rounded-md w-full mt-5"
         onClick={() => {
