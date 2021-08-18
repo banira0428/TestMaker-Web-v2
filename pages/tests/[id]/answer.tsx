@@ -94,7 +94,7 @@ export default function AnswerTest(props) {
                   ) && (
                   <FormAnswerSelect
                     answer={questions[index].answer}
-                    selections={questions[index].getSelections(questions.map((it) => it.answer).filter((it) => it !== ""))}
+                    selections={questions[index].getSelections(questions.map((it) => it.answer).filter((it) => it !== "" && it !== questions[index].answer))}
                     onAnswered={(input: string, isCorrect: boolean) => {
                       setYourAnswer(input);
                       setState("result");
@@ -127,10 +127,7 @@ export default function AnswerTest(props) {
                   ) && (
                   <FormAnswerMultipleSelect
                     question={questions[index]}
-                    selections={shuffle([
-                      ...questions[index].others,
-                      ...questions[index].answers,
-                    ])}
+                    selections={questions[index].getSelections(questions.map((it) => it.answer).filter((it) => it !== "" && it !== questions[index].answer))}
                     onAnswered={(input: string, isCorrect: boolean) => {
                       setYourAnswer(input);
                       setState("result");
