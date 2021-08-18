@@ -93,7 +93,8 @@ export default function AnswerTest(props) {
                     QUESTION_TYPES.SELECT
                   ) && (
                   <FormAnswerSelect
-                    question={questions[index]}
+                    answer={questions[index].answer}
+                    selections={questions[index].getSelections(questions.map((it) => it.answer).filter((it) => it !== ""))}
                     onAnswered={(input: string, isCorrect: boolean) => {
                       setYourAnswer(input);
                       setState("result");
