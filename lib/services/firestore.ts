@@ -86,8 +86,20 @@ export const deleteTest = async (documentId: string) => {
 
 export const getTest = async (documentId: string) => {
   const db = firebase.firestore();
-  const document = (await db.collection("tests").doc(documentId).get()).data() as Test;
-  return document;
+  const document = (await db.collection("tests").doc(documentId).get());
+  const test = new Test(
+    document.id,
+    document.data().name,
+    document.data().userId,
+    document.data().userName,
+    [],
+    document.data().public,
+    document.data().created_at.toDate(),
+    document.data().color,
+    0,
+    ''
+  )
+  return test;
 };
 
 export const fetchQuestions = async (documentId: string, limit: number) => {

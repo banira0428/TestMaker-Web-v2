@@ -16,7 +16,7 @@ export default function NavigateAppBanner(props: Props) {
   }, [props.documentId]);
 
   return (
-    <div>
+    <div className="z-20">
       {isSmartPhone(navigator.userAgent) && link !== "" && (
         <a href={link}>
           <div className="fixed bottom-3 left-0 right-0 text-center opacity-90">
