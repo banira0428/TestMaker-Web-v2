@@ -92,7 +92,7 @@ export default function CreateQuestionDialog(props: Props) {
             onClick={() => props.setIsShow(false)}
           >
             <div
-              className="bg-white w-3/6 h-5/6 mx-auto mt-12 mb-12 p-3 rounded-md overflow-y-scroll"
+              className="bg-white md:w-3/6 h-full mx-auto p-3 rounded-md overflow-y-scroll"
               onClick={(e) => {
                 e.stopPropagation();
               }}
