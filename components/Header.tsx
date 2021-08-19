@@ -17,7 +17,7 @@ export default function Header() {
             <a>
               <img
                 src="/img/logo.svg"
-                className="h-12 p-1"
+                className="h-12 p-2"
                 alt={"暗記メーカー"}
               />
             </a>
