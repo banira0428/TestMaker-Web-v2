@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { Question } from "../../lib/resources/question";
-import { getDownloadUrl } from "../../lib/services/storage";
 import PromptImage from "./PromptImage";
 
 type Props = {
