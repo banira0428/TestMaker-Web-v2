@@ -6,10 +6,6 @@ import React, { useContext } from "react";
 import { SelectedTestContext } from "../components/contexts/TestContext";
 import { TestsProvider } from "../components/contexts/TestsContext";
 import { AuthContext } from "../components/authContext";
-import firebase from "firebase";
-import { StyledFirebaseAuth } from "react-firebaseui";
-import Heading from "../components/Heading";
-import Login from "./login";
 import LoginForm from "../components/LoginForm";
 
 export default function DashBoard() {
@@ -24,7 +20,7 @@ export default function DashBoard() {
       <Layout>
         {/* <div className="text-center p-2 text-white bg-blue-300">
           <p>
-            お知らせ：既存の問題を編集する際に、問題形式が正しく引き継がれない場合がある不具合を修正しました。（2021/05/22）
+            お知らせ：お知らせがあればここに載せる
           </p>
         </div> */}
         <div className="mx-auto max-w-7xl p-3">
