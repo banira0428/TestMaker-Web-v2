@@ -13,8 +13,10 @@ import AllResult from "../../../components/answer/AllResult";
 import { QuestionType, QUESTION_TYPES } from "../../../lib/question_type";
 import FormAnswerSelect from "../../../components/answer/FormAnswerSelect";
 import FormAnswerMultiple from "../../../components/answer/FormAnswerMultiple";
-import FormAnswerMultipleSelect from '../../../components/answer/FormAnswerMultipleSelect';
+import FormAnswerMultipleSelect from "../../../components/answer/FormAnswerMultipleSelect";
 import { shuffle } from "../../../lib/array_util";
+import { isSmartPhone } from '../../../lib/agent_util';
+import NavigateAppBanner from '../../../components/answer/NavigateAppBanner';
 
 type PathParams = {
   id: string;
@@ -61,15 +63,14 @@ export default function AnswerTest(props) {
       <Layout>
         {test && questions[index] && (
           <div className="mx-auto max-w-5xl p-3">
+            <NavigateAppBanner documentId={test.documentId}/>
             <Heading
               title={"Answer"}
               subTitle={"問題集の解答 / " + test.name}
             />
-            {
-              (state === "answer" || state === "result")&& (
-                <Prompt question={questions[index]} index={index} />
-              )
-            }
+            {(state === "answer" || state === "result") && (
+              <Prompt question={questions[index]} index={index} />
+            )}
             {state === "answer" && (
               <div>
                 {questions[index].type ===
@@ -94,7 +95,13 @@ export default function AnswerTest(props) {
                   ) && (
                   <FormAnswerSelect
                     answer={questions[index].answer}
-                    selections={questions[index].getSelections(questions.map((it) => it.answer).filter((it) => it !== "" && it !== questions[index].answer))}
+                    selections={questions[index].getSelections(
+                      questions
+                        .map((it) => it.answer)
+                        .filter(
+                          (it) => it !== "" && it !== questions[index].answer
+                        )
+                    )}
                     onAnswered={(input: string, isCorrect: boolean) => {
                       setYourAnswer(input);
                       setState("result");
@@ -127,7 +134,13 @@ export default function AnswerTest(props) {
                   ) && (
                   <FormAnswerMultipleSelect
                     question={questions[index]}
-                    selections={questions[index].getSelections(questions.map((it) => it.answer).filter((it) => it !== "" && it !== questions[index].answer))}
+                    selections={questions[index].getSelections(
+                      questions
+                        .map((it) => it.answer)
+                        .filter(
+                          (it) => it !== "" && it !== questions[index].answer
+                        )
+                    )}
                     onAnswered={(input: string, isCorrect: boolean) => {
                       setYourAnswer(input);
                       setState("result");
