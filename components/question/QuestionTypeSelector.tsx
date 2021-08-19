@@ -7,7 +7,7 @@ type Props = {
 
 export default function QuestionTypeSelector(props: Props) {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-2">
       {Object.values<QuestionType>(QUESTION_TYPES).map((it, i) => (
         <div
           key={i}
@@ -27,7 +27,7 @@ export default function QuestionTypeSelector(props: Props) {
           />
           <label
             htmlFor={`type-${i}`}
-            className="cursor-pointer block p-2 font-semibold"
+            className="cursor-pointer block p-1 md:p-2 font-semibold text-sm"
           >
             {it.name}
           </label>
