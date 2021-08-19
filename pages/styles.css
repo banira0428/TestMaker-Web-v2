@@ -5,7 +5,7 @@
 }
 
 .fade-entered {
-    opacity: .95;
+    opacity: 1;
     transition: 150ms;
 }
 
