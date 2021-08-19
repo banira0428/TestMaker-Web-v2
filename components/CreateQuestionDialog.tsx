@@ -92,14 +92,20 @@ export default function CreateQuestionDialog(props: Props) {
             onClick={() => props.setIsShow(false)}
           >
             <div
-              className="bg-white md:w-3/6 h-full mx-auto p-3 rounded-md overflow-y-scroll"
+              className="bg-white md:w-3/6 h-full top-0 bottom-0 mx-auto p-3 rounded-md overflow-y-scroll"
               onClick={(e) => {
                 e.stopPropagation();
               }}
             >
-              <h3 className="text-xl md:text-2xl font-bold mr-auto ml-0 sticky">
-                問題の新規作成
-              </h3>
+              <div className="flex">
+                <h3 className="text-xl md:text-2xl font-bold mr-auto ml-0 sticky">
+                  問題の新規作成
+                </h3>
+                <div className="flex-grow" />
+                <button 
+                className="border rounded p-1 px-3 text-sm"
+                onClick={() => props.setIsShow(false)}>閉じる</button>
+              </div>
               <QuestionTypeSelector
                 type={type}
                 onChange={(it) => setType(it)}
@@ -255,7 +261,7 @@ export default function CreateQuestionDialog(props: Props) {
                   isLoading={isLoading}
                   isValid={validate}
                   onClick={() => {
-                    setIsLoading(true)
+                    setIsLoading(true);
                     type
                       .createQuestion({
                         testDocumentId: props.documentId,
@@ -271,7 +277,7 @@ export default function CreateQuestionDialog(props: Props) {
                         image: image,
                       })
                       .then((question) => {
-                        setIsLoading(false)
+                        setIsLoading(false);
                         setOrder(order + 1);
                         setMessage("問題を保存しました");
                         props.onCreateQuestion(question);
