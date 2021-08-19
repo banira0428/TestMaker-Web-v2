@@ -23,7 +23,7 @@ export default function TestInformation() {
     <div>
       {selectedTest && (
         <div>
-          <div className="pb-5 border-b">
+          <div className="pb-5">
             <h4 className="text-2xl md:text-3xl font-bold  mr-auto ml-0 mt-5 mb-3">
               {selectedTest.name}
             </h4>
@@ -31,7 +31,7 @@ export default function TestInformation() {
             <p>{`公開設定：　${
               selectedTest.public ? "全体公開" : "限定公開"
             }`}</p>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <Link href={`/tests/${selectedTest.documentId}/answer`}>
                 <a>
                   <Button

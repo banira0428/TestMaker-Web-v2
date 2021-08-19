@@ -15,7 +15,6 @@ import FormAnswerSelect from "../../../components/answer/FormAnswerSelect";
 import FormAnswerMultiple from "../../../components/answer/FormAnswerMultiple";
 import FormAnswerMultipleSelect from "../../../components/answer/FormAnswerMultipleSelect";
 import { shuffle } from "../../../lib/array_util";
-import { isSmartPhone } from '../../../lib/agent_util';
 import NavigateAppBanner from '../../../components/answer/NavigateAppBanner';
 
 type PathParams = {

@@ -25,17 +25,17 @@ export default function DashBoard() {
         </div> */}
         <div className="mx-auto max-w-7xl p-3">
           {currentUser ? (
-            <div className="grid grid-cols-3 gap-4 divide-x mb-6">
+            <div className="grid grid-cols-3 gap-6 mb-6">
               <TestsProvider>
                 <div
-                  className={`${selectedTest ? "col-span-1" : "col-span-3"}`}
+                  className={`${selectedTest ? "col-span-3 sm:col-span-1" : "col-span-3"}`}
                 >
                   <TestList />
                 </div>
                 <div
                   className={`${
-                    selectedTest ? "col-span-2" : "col-span-0"
-                  } pl-5`}
+                    selectedTest ? "col-span-3 sm:col-span-2" : "col-span-0"
+                  }`}
                 >
                   <TestInformation />
                 </div>
